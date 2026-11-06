@@ -4,7 +4,7 @@
 const V = '歷代志上-bc7c6d72e99b';
 const PFX = '歷代志上-';   /* 同一個 github.io 網域共用 Cache Storage：只清自己的前綴 */
 const NC = u => ({ cache: new URL(u).origin === self.location.origin ? 'no-cache' : 'default' });
-const SHELL = ["./", "./index.html", "./sc.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-180.png", "./icon-167.png", "./icon-152.png", "./icon-120.png", "./icon-64.png", "./favicon.ico", "./xz2.js", "./coread.js", "./peerjs.min.js"];
+const SHELL = ["./", "./index.html", "./sc.html", "./en.html", "./manifest-en.webmanifest", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-180.png", "./icon-167.png", "./icon-152.png", "./icon-120.png", "./icon-64.png", "./favicon.ico", "./xz2.js", "./coread.js", "./peerjs.min.js"];
 self.addEventListener('install', e => {
   self.skipWaiting();
   e.waitUntil(caches.open(V).then(c => Promise.all(SHELL.map(u => fetch(new Request(u, { cache: 'reload' })).then(r => (r && r.ok) ? c.put(u, r) : null).catch(() => {})))).catch(() => {}));
